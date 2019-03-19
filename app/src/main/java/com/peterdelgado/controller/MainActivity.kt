@@ -11,18 +11,31 @@ import android.os.StrictMode
 import android.view.View
 import android.app.AlertDialog
 import android.support.design.widget.Snackbar
-import com.peterdelgado.innocv.R
 import com.peterdelgado.model.User
-
+import javax.inject.Inject
+import dagger.Component
+import dagger.android.DaggerActivity
+import dagger.android.DaggerContentProvider
 
 
 class MainActivity : AppCompatActivity() {
+
+   // Simple Dagger 2 Example, Although Not Implemented Fully
+   // @Inject lateinit var user: UserInfo
+
+
+
     val User: User = User("4444", "peter", "test")
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(com.peterdelgado.innocv.R.layout.activity_main)
+
+
+        //Simple Dagger Example
+       //user.Test
+
 
 
         fab.setOnClickListener { view ->
@@ -41,6 +54,17 @@ class MainActivity : AppCompatActivity() {
         toPost()
         toUpdate()
 
+    }
+
+    class UserInfo @Inject constructor() {
+        val Test = "Just Testing Dagger 2"
+    }
+
+
+
+    @Component
+    interface Users {
+        fun user(app: MainActivity)
     }
 
 
@@ -125,8 +149,6 @@ class MainActivity : AppCompatActivity() {
 
                 val id: String = idTxt.text.toString()
                 val name: String = nameTxt.text.toString()
-
-
                 val payload = mapOf("id" to id, "name" to name)
                 val post = ("https://hello-world.innocv.com/api/User/")
                 val finalPost = post(post, json=payload)

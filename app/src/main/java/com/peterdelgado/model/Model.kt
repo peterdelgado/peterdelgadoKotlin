@@ -1,5 +1,7 @@
 package com.peterdelgado.model
 
+import com.peterdelgado.controller.MainActivity
+import dagger.Component
 import java.util.*
 
 
