@@ -37,7 +37,7 @@ class MainActivity : AppCompatActivity() {
        //user.Test
 
 
-
+        //Floating Action Bar
         fab.setOnClickListener { view ->
             Snackbar.make(view, "Send Email", Snackbar.LENGTH_LONG)
                 .setAction("Action", null).show()
